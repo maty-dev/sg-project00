@@ -2,25 +2,44 @@
 import pygame, sys
 from pygame.locals import *
 import components
+import ImgLoader
+import GameModel
+
 
 pygame.init()
+
+def AnimTime(t):
+    t+=1
+    if(t>1):
+        t=0
+    return t
 
 def main():
     screen=pygame.display.set_mode((500,500))
     fps=pygame.time.Clock()
     pointer=components.Pointer()
+    playerImgs=ImgLoader.LoadPlayerImgs()
+    background=ImgLoader.LoadBackground()
+    player=GameModel.Player(playerImgs)
     gameOn=True
+    time=0
 
     while(gameOn):
         events=pygame.event.get()
         for event in events:
             if(event.type==pygame.QUIT):
                 gameOn=False
-            elif(even.type==pygame.KEYDOWN):
+            elif(event.type==pygame.KEYDOWN):
                 if (event.key==pygame.K_ESCAPE):
                     gameOn==False
+        fps.tick(25)
+        time=AnimTime(time)
         screen.fill((000,000,000))
+        player.Update(events,background)
+        player.Animation(time)
+        player.Render(screen)
         pygame.display.flip()
+
 
 main()
 pygame.quit()

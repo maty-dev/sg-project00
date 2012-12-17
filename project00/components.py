@@ -21,7 +21,7 @@ class Background(pygame.sprite.Sprite):
 class MoveFunctions():
 
     def __init__(self):
-        self.direction="STAND"
+        self.direction="UP"
         self.leftKDown=False
         self.rightKDown=False
         self.upKDown=False
@@ -54,6 +54,8 @@ class MoveFunctions():
 
     def CompleteMove(self,events):
         isMoving=False
+        x=0
+        y=0
         for event in events:
             if(event.type==pygame.KEYDOWN):
                 if(event.key==pygame.K_RIGHT):
@@ -77,7 +79,7 @@ class MoveFunctions():
                     y=self.speed
                     isMoving=True
             if(event.type==pygame.KEYUP):
-                if(even.key==pygame.K_RIGHT):
+                if(event.key==pygame.K_RIGHT):
                     if(self.leftKDown):
                         x=-self.speed
                     else:
@@ -89,7 +91,7 @@ class MoveFunctions():
                     else:
                         x=0
                     self.leftKDown=False
-                if(even.key==pygame.K_UP):
+                if(event.key==pygame.K_UP):
                     if(self.downKDown):
                         y=self.speed
                     else:
@@ -101,7 +103,8 @@ class MoveFunctions():
                     else:
                         y=0
                     self.downKDown=False
-            return(x,y,self.direction,isMoving)
+        value=(x,y,self.direction,isMoving)
+        return value
 
 class Pointer(pygame.rect.Rect):
 
@@ -136,9 +139,10 @@ class Entity(pygame.sprite.Sprite):
 
     def __init__(self,images,x=100,y=100):
         self.anim=images
-        self.imageDef="STAND"
-        self.image=anim[self.imageDef][0]
-        self.rect=image.get_rect()
+        self.imageDef="UP"
+        self.pos=0
+        self.image=self.anim[self.imageDef][self.pos]
+        self.rect=self.image.get_rect()
         self.rect.top,self.rect.left=(x,y)
         self.isMoving=False
 
