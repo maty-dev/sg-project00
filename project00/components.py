@@ -21,7 +21,7 @@ class Background(pygame.sprite.Sprite):
 class MoveFunctions():
 
     def __init__(self):
-        self.direction="UP"
+        self.direction="DOWN"
         self.leftKDown=False
         self.rightKDown=False
         self.upKDown=False
@@ -137,14 +137,21 @@ class Button(pygame.sprite.Sprite):
 
 class Entity(pygame.sprite.Sprite):
 
-    def __init__(self,images,x=100,y=100):
+    def __init__(self,images,x=200,y=200):
         self.anim=images
-        self.imageDef="UP"
+        self.imageDef="DOWN"
         self.pos=0
         self.image=self.anim[self.imageDef][self.pos]
         self.rect=self.image.get_rect()
         self.rect.top,self.rect.left=(x,y)
         self.isMoving=False
+        self.rightKDown=False
+        self.leftKDown=False
+        self.upKDown=False
+        self.downKDown=False
+        self.speed=10
+        self.x=0
+        self.y=0
 
     def Update(self,events):
         pass

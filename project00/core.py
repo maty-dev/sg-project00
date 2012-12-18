@@ -21,6 +21,7 @@ def main():
     playerImgs=ImgLoader.LoadPlayerImgs()
     background=ImgLoader.LoadBackground()
     player=GameModel.Player(playerImgs)
+    background=components.Background(ImgLoader.LoadBackground(),True)
     gameOn=True
     time=0
 
@@ -35,8 +36,9 @@ def main():
         fps.tick(25)
         time=AnimTime(time)
         screen.fill((000,000,000))
-        player.Update(events,background)
-        player.Animation(time)
+        player.Update(events,time)
+        background.Update(player.x,player.y)
+        background.Render(screen)
         player.Render(screen)
         pygame.display.flip()
 
