@@ -7,12 +7,20 @@ class Player(components.Entity):
 
     def __init__(self,images):
         components.Entity.__init__(self,images)
+        self.experience=0
+        self.level=1
+        self.life=100
+        self.mana=100
+        self.strenght=10
+        self.type="Player"
 
     def Update(self,events,time):
         if(self.x==0 and self.y==0):
             self.isMoving=False
         self.values=self.Move(events)
-        if(self.isMoving and time==1):
+        if(self.isAttacking):
+            self.image=self.anim[self.attackImage]
+        elif(self.isMoving and time==1):
             self.Animation()
 
     def Move(self,events):
@@ -39,6 +47,16 @@ class Player(components.Entity):
                     self.imageDef="DOWN"
                     self.y=self.speed
                     self.isMoving=True
+                if(event.key==pygame.K_LCTRL):
+                    self.isAttacking=True
+                    if (self.rightKDown):
+                        self.attackImage="ATK_RIGHT"
+                    elif(self.leftKDown):
+                        self.attackImage="ATK_LEFT"
+                    elif (self.upKDown):
+                        self.attackImage="ATK_UP"
+                    elif(self.downKDown):
+                        self.attackImage="ATK_DOWN"
             if(event.type==pygame.KEYUP):
                 if(event.key==pygame.K_RIGHT):
                     if(self.leftKDown):
@@ -64,6 +82,8 @@ class Player(components.Entity):
                     else:
                         self.y=0
                     self.downKDown=False
+                if(event.key==pygame.K_LCTRL):
+                    self.isAttacking=False
 
     def Animation(self):
             self.pos+=1

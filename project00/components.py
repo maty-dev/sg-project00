@@ -9,102 +9,12 @@ class Background(pygame.sprite.Sprite):
         self.scrolling=scrolling
         self.rect=self.image.get_rect()
 
-
     def Update(self,x,y):
         if(self.scrolling):
             self.rect.move_ip(-x,-y)
 
     def Render(self,screen):
         screen.blit(self.image,self.rect)
-
-
-class MoveFunctions():
-
-    def __init__(self):
-        self.direction="DOWN"
-        self.leftKDown=False
-        self.rightKDown=False
-        self.upKDown=False
-        self.downKDown=False
-        self.speed=10
-
-    def DefMove(self,events):
-        for event in events:
-            if(event.type==pygame.KEYDOWN):
-                if(event.key==pygame.K_RIGHT):
-                    x=self.speed
-                    self.rightkDown=True
-                    self.direction="RIGHT"
-                if(event.key==pygame.K_LEFT):
-                    x=-self.speed
-                    self.leftKDown=True
-                    self.direction="LEFT"
-            if(event.type==pygame.KEYUP):
-                if(event.key==pygame.K_RIGHT):
-                    if (self.leftKDown):
-                        x=-self.speed
-                    else:
-                        x=0
-                if(event.type==pygame.K_LEFT):
-                    if(self.rightKDown):
-                        x=self.speed
-                    else:
-                        x=0
-        return(x,self.direction)
-
-    def CompleteMove(self,events):
-        isMoving=False
-        x=0
-        y=0
-        for event in events:
-            if(event.type==pygame.KEYDOWN):
-                if(event.key==pygame.K_RIGHT):
-                    self.rightKDown=True
-                    self.direction="RIGHT"
-                    x=self.speed
-                    isMoving=True
-                if(event.key==pygame.K_LEFT):
-                    self.leftKDown=True
-                    self.direction="LEFT"
-                    x=-self.speed
-                    isMoving=True
-                if(event.key==pygame.K_UP):
-                    self.upKDown=True
-                    self.direction="UP"
-                    y=-self.speed
-                    isMoving=True
-                if(event.key==pygame.K_DOWN):
-                    self.downKDown=True
-                    self.direction="DOWN"
-                    y=self.speed
-                    isMoving=True
-            if(event.type==pygame.KEYUP):
-                if(event.key==pygame.K_RIGHT):
-                    if(self.leftKDown):
-                        x=-self.speed
-                    else:
-                        x=0
-                    self.rightKDown=False
-                if(event.key==pygame.K_LEFT):
-                    if(self.rightKDown):
-                        x=self.speed
-                    else:
-                        x=0
-                    self.leftKDown=False
-                if(event.key==pygame.K_UP):
-                    if(self.downKDown):
-                        y=self.speed
-                    else:
-                        y=0
-                    self.upKDown=False
-                if(event.key==pygame.K_DOWN):
-                    if(self.upKDown):
-                        y=-self.speed
-                    else:
-                        y=0
-                    self.downKDown=False
-        value=(x,y,self.direction,isMoving)
-        return value
 
 class Pointer(pygame.rect.Rect):
 
@@ -140,11 +50,13 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self,images,x=200,y=200):
         self.anim=images
         self.imageDef="DOWN"
+        self.attackImage="ATK_DOWN"
         self.pos=0
         self.image=self.anim[self.imageDef][self.pos]
         self.rect=self.image.get_rect()
         self.rect.top,self.rect.left=(x,y)
         self.isMoving=False
+        self.isAttacking=False
         self.rightKDown=False
         self.leftKDown=False
         self.upKDown=False
@@ -152,9 +64,16 @@ class Entity(pygame.sprite.Sprite):
         self.speed=10
         self.x=0
         self.y=0
+        self.type="Entity"
 
     def Update(self,events):
         pass
 
     def Render(self,screen):
         screen.blit(self.image,self.rect)
+
+    def IsType(self,pType):
+        if(pType==self.type):
+            return True
+        else:
+            return False
