@@ -16,11 +16,12 @@ def AnimTime(t):
 
 def main():
     screen=pygame.display.set_mode((500,500))
+    defFont=pygame.font.Font(None,25)
     fps=pygame.time.Clock()
     pointer=components.Pointer()
     playerImgs=ImgLoader.LoadPlayerImgs()
     background=ImgLoader.LoadBackground()
-    player=GameModel.Player(playerImgs)
+    player=GameModel.Player(playerImgs,"Dummi3")
     background=components.Background(ImgLoader.LoadBackground(),True)
     gameOn=True
     time=0
@@ -40,6 +41,7 @@ def main():
         background.Update(player.x,player.y)
         background.Render(screen)
         player.Render(screen)
+        screen.blit(defFont.render(player.name,0,(255,255,255)),((player.x+230),(player.y+170)))
         pygame.display.flip()
 
 

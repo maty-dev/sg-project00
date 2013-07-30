@@ -5,8 +5,9 @@ from pygame.locals import *
 
 class Player(components.Entity):
 
-    def __init__(self,images):
+    def __init__(self,images,pName):
         components.Entity.__init__(self,images)
+        self.name=pName
         self.experience=0
         self.level=1
         self.life=100
