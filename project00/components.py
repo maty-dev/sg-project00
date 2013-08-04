@@ -77,3 +77,13 @@ class Entity(pygame.sprite.Sprite):
             return True
         else:
             return False
+
+class Item(Entity):
+
+    def __init__(self):
+        super(Item, self).__init__()
+        self.type="Item"
+        self.image=None
+
+    def StoreItem():
+        return None
