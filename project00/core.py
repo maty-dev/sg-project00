@@ -40,7 +40,7 @@ def main():
         background.Update(player.x,player.y)
         background.Render(screen)
         player.Render(screen)
-        screen.blit(defFont.render(player.name,0,(255,255,255)),((player.x+230),(player.y+170)))
+        screen.blit(defFont.render(player.name,0,(255,255,255)),((player.x+200),(player.y+170)))
         pygame.display.flip()
 
 
