@@ -80,6 +80,7 @@ class Entity(pygame.sprite.Sprite):
 
 class Item(Entity):
 
+<<<<<<< HEAD
     def __init__(self):
         super(Item, self).__init__()
         self.type="Item"
@@ -87,3 +88,32 @@ class Item(Entity):
 
     def StoreItem():
         return None
+=======
+    def __init__(self,images):
+        super(Item, self).__init__()
+        self.type="collectable"
+
+
+class Zone():
+
+    def __init__(self,imLoader,zoneType="testArea"):
+        self.type=zoneType
+        self.background
+        self.items={}
+        self.enemies={}
+        self.tiles={}
+        self.imgLoader=imLoader
+
+    def Load():
+        self.background=Background(imgLoader.LoadBackgroundImage(self.type,True))
+
+    def GenerateItems():
+        pass
+
+
+class Map():
+
+    def __init__(self,zoneParam):
+        self.zone=zoneParam
+        self.tiles=zoneParam.tiles
+>>>>>>> 8eb61447ba854a487814af399bef19508daf1e0d

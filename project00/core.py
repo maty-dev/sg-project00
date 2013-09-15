@@ -20,9 +20,14 @@ def main():
     fps=pygame.time.Clock()
     pointer=components.Pointer()
     playerImgs=ImgLoader.LoadPlayerImgs()
+<<<<<<< HEAD
     background=ImgLoader.LoadBackground()
     player=GameModel.Player(playerImgs,"Dummi3")
     background=components.Background(ImgLoader.LoadBackground(),True)
+=======
+    player=GameModel.Player(playerImgs,"Dummi3")
+    background=components.Background(ImgLoader.LoadBackgroundImage(),True)
+>>>>>>> 8eb61447ba854a487814af399bef19508daf1e0d
     gameOn=True
     time=0
 
@@ -41,7 +46,11 @@ def main():
         background.Update(player.x,player.y)
         background.Render(screen)
         player.Render(screen)
+<<<<<<< HEAD
         screen.blit(defFont.render(player.name,0,(255,255,255)),((player.x+230),(player.y+170)))
+=======
+        screen.blit(defFont.render(player.name,0,(255,255,255)),((player.x+200),(player.y+170)))
+>>>>>>> 8eb61447ba854a487814af399bef19508daf1e0d
         pygame.display.flip()
 
 

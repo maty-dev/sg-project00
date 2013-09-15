@@ -23,6 +23,8 @@ class Player(components.Entity):
             self.image=self.anim[self.attackImage]
         elif(self.isMoving and time==1):
             self.Animation()
+        else:
+            self.image=self.anim[self.imageDef][self.pos]
 
     def Move(self,events):
         isMoving=False
@@ -32,32 +34,28 @@ class Player(components.Entity):
                     self.rightKDown=True
                     self.imageDef="RIGHT"
                     self.x=self.speed
+                    self.attackImage="ATK_RIGHT"
                     self.isMoving=True
                 if(event.key==pygame.K_LEFT):
                     self.leftKDown=True
                     self.imageDef="LEFT"
                     self.x=-self.speed
+                    self.attackImage="ATK_LEFT"
                     self.isMoving=True
                 if(event.key==pygame.K_UP):
                     self.upKDown=True
                     self.imageDef="UP"
                     self.y=-self.speed
+                    self.attackImage="ATK_UP"
                     self.isMoving=True
                 if(event.key==pygame.K_DOWN):
                     self.downKDown=True
                     self.imageDef="DOWN"
                     self.y=self.speed
+                    self.attackImage="ATK_DOWN"
                     self.isMoving=True
                 if(event.key==pygame.K_LCTRL):
                     self.isAttacking=True
-                    if (self.rightKDown):
-                        self.attackImage="ATK_RIGHT"
-                    elif(self.leftKDown):
-                        self.attackImage="ATK_LEFT"
-                    elif (self.upKDown):
-                        self.attackImage="ATK_UP"
-                    elif(self.downKDown):
-                        self.attackImage="ATK_DOWN"
             if(event.type==pygame.KEYUP):
                 if(event.key==pygame.K_RIGHT):
                     if(self.leftKDown):
@@ -92,3 +90,9 @@ class Player(components.Entity):
                 self.pos=0
             self.image=self.anim[self.imageDef][self.pos]
 
+
+class Enemy(components.Entity):
+
+    def __init__(self,images):
+        components.Entity.__init__(self,images)
+        self.type="Enemy"
