@@ -92,3 +92,8 @@ class Player(components.Entity):
                 self.pos=0
             self.image=self.anim[self.imageDef][self.pos]
 
+
+class Enemy(components.Entity):
+
+    def __init__(self,images):
+        components.Entity.__init__(self,images)

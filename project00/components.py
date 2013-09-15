@@ -77,3 +77,33 @@ class Entity(pygame.sprite.Sprite):
             return True
         else:
             return False
+
+class Item(Entity):
+
+    def __init__(self,images):
+        super(Item, self).__init__()
+        self.type="collectable"
+
+
+class Zone():
+
+    def __init__(self,imLoader,zoneType="testArea"):
+        self.type=zoneType
+        self.background
+        self.items={}
+        self.enemies={}
+        self.tiles={}
+        self.imgLoader=imLoader
+
+    def Load():
+        self.background=Background(imgLoader.LoadBackgroundImage(self.type,True))
+
+    def GenerateItems():
+        pass
+
+
+class Map():
+
+    def __init__(self,zoneParam):
+        self.zone=zoneParam
+        self.tiles=zoneParam.tiles

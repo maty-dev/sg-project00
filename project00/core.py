@@ -20,9 +20,8 @@ def main():
     fps=pygame.time.Clock()
     pointer=components.Pointer()
     playerImgs=ImgLoader.LoadPlayerImgs()
-    background=ImgLoader.LoadBackground()
     player=GameModel.Player(playerImgs,"Dummi3")
-    background=components.Background(ImgLoader.LoadBackground(),True)
+    background=components.Background(ImgLoader.LoadBackgroundImage(),True)
     gameOn=True
     time=0
 
