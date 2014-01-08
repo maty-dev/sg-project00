@@ -1,0 +1,1 @@
+ImagesMap={"player" : "images/Player/"}
