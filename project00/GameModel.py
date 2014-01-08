@@ -1,12 +1,14 @@
 # -*- coding: utf-8 *-*
 import pygame,components
 from pygame.locals import *
+import ModelMaps
+import ImgLoader
 
 
 class Player(components.Entity):
 
-    def __init__(self,images,pName):
-        components.Entity.__init__(self,images)
+    def __init__(self,pName,name = "player"):
+        components.Entity.__init__(self,ImgLoader.LoadImgs(ModelMaps.ImagesMap[name]))
         self.name=pName
         self.experience=0
         self.level=1

@@ -19,8 +19,7 @@ def main():
     defFont=pygame.font.Font(None,25)
     fps=pygame.time.Clock()
     pointer=components.Pointer()
-    playerImgs=ImgLoader.LoadPlayerImgs()
-    player=GameModel.Player(playerImgs,"Dummi3")
+    player=GameModel.Player("Dummi3")
     background=components.Background(ImgLoader.LoadBackgroundImage(),True)
     gameOn=True
     time=0

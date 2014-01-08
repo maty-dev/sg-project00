@@ -17,54 +17,60 @@ def AddTransparency(images):
         images.set_colorkey(color)
         return images
 
-def LoadPlayerImgs():
-    playerSuffix="images/Player/"
-    playerUp=[]
-    playerDown=[]
-    playerLeft=[]
-    playerRight=[]
-    playerUp.append(pygame.image.load(playerSuffix+"Up.PNG"))
-    playerUp.append(pygame.image.load(playerSuffix+"Up1.PNG"))
-    playerUp.append(pygame.image.load(playerSuffix+"Up2.PNG"))
-    #playerUp.append(pygame.image.load(playerSuffix+"Up3.PNG"))
-    #playerUp.append(pygame.image.load(playerSuffix+"Up4.PNG"))
-    #playerUp.append(pygame.image.load(playerSuffix+"Up5.PNG"))
-    #playerUp.append(pygame.image.load(playerSuffix+"Up6.PNG"))
-    playerDown.append(pygame.image.load(playerSuffix+"Down.PNG"))
-    playerDown.append(pygame.image.load(playerSuffix+"Down1.PNG"))
-    playerDown.append(pygame.image.load(playerSuffix+"Down2.PNG"))
-    #playerDown.append(pygame.image.load(playerSuffix+"Down3.PNG"))
-    #playerDown.append(pygame.image.load(playerSuffix+"Down4.PNG"))
-    #playerDown.append(pygame.image.load(playerSuffix+"Down5.PNG"))
-    #playerDown.append(pygame.image.load(playerSuffix+"Down6.PNG"))
-    playerRight.append(pygame.image.load(playerSuffix+"Right.PNG"))
-    playerRight.append(pygame.image.load(playerSuffix+"Right1.PNG"))
-    playerRight.append(pygame.image.load(playerSuffix+"Right2.PNG"))
-    #playerRight.append(pygame.image.load(playerSuffix+"Right3.PNG"))
-    #playerRight.append(pygame.image.load(playerSuffix+"Right4.PNG"))
-    #playerRight.append(pygame.image.load(playerSuffix+"Right5.PNG"))
-    #playerRight.append(pygame.image.load(playerSuffix+"Right6.PNG"))
-    playerLeft.append(pygame.image.load(playerSuffix+"Left.PNG"))
-    playerLeft.append(pygame.image.load(playerSuffix+"Left1.PNG"))
-    playerLeft.append(pygame.image.load(playerSuffix+"Left2.PNG"))
-    #playerLeft.append(pygame.image.load(playerSuffix+"Left3.PNG"))
-    #playerLeft.append(pygame.image.load(playerSuffix+"Left4.PNG"))
-    #playerLeft.append(pygame.image.load(playerSuffix+"Left5.PNG"))
-    #playerLeft.append(pygame.image.load(playerSuffix+"Left6.PNG"))
-    playerAtkLeft=pygame.image.load(playerSuffix+"AtkLeft.PNG")
-    playerAtkRight=pygame.image.load(playerSuffix+"AtkRight.PNG")
-    playerAtkDown=pygame.image.load(playerSuffix+"AtkDown.PNG")
-    playerAtkUp=pygame.image.load(playerSuffix+"AtkUp.PNG")
-    playerUP=AddTransparency(playerUp)
-    playerDown=AddTransparency(playerDown)
-    playerRight=AddTransparency(playerRight)
-    playerLeft=AddTransparency(playerLeft)
-    playerAtkLeft=AddTransparency(playerAtkLeft)
-    playerAtkRight=AddTransparency(playerAtkRight)
-    playerAtkDown=AddTransparency(playerAtkDown)
-    playerAtkUp=AddTransparency(playerAtkUp)
-    playerImgs={"UP":playerUp,"DOWN":playerDown,"RIGHT":playerRight,"LEFT":playerLeft,"ATK_LEFT":playerAtkLeft,"ATK_RIGHT":playerAtkRight,"ATK_UP":playerAtkUp,"ATK_DOWN":playerAtkDown}
-    return playerImgs
+def LoadImgs(suf, atkImgs=True):
+    Suffix=suf
+    atk=atkImgs
+    Up=[]
+    Down=[]
+    Left=[]
+    Right=[]
+    Up.append(pygame.image.load(Suffix+"Up.PNG"))
+    Up.append(pygame.image.load(Suffix+"Up1.PNG"))
+    Up.append(pygame.image.load(Suffix+"Up2.PNG"))
+    #Up.append(pygame.image.load(Suffix+"Up3.PNG"))
+    #Up.append(pygame.image.load(Suffix+"Up4.PNG"))
+    #Up.append(pygame.image.load(Suffix+"Up5.PNG"))
+    #Up.append(pygame.image.load(Suffix+"Up6.PNG"))
+    Down.append(pygame.image.load(Suffix+"Down.PNG"))
+    Down.append(pygame.image.load(Suffix+"Down1.PNG"))
+    Down.append(pygame.image.load(Suffix+"Down2.PNG"))
+    #Down.append(pygame.image.load(Suffix+"Down3.PNG"))
+    #Down.append(pygame.image.load(Suffix+"Down4.PNG"))
+    #Down.append(pygame.image.load(Suffix+"Down5.PNG"))
+    #Down.append(pygame.image.load(Suffix+"Down6.PNG"))
+    Right.append(pygame.image.load(Suffix+"Right.PNG"))
+    Right.append(pygame.image.load(Suffix+"Right1.PNG"))
+    Right.append(pygame.image.load(Suffix+"Right2.PNG"))
+    #Right.append(pygame.image.load(Suffix+"Right3.PNG"))
+    #Right.append(pygame.image.load(Suffix+"Right4.PNG"))
+    #Right.append(pygame.image.load(Suffix+"Right5.PNG"))
+    #Right.append(pygame.image.load(Suffix+"Right6.PNG"))
+    Left.append(pygame.image.load(Suffix+"Left.PNG"))
+    Left.append(pygame.image.load(Suffix+"Left1.PNG"))
+    Left.append(pygame.image.load(Suffix+"Left2.PNG"))
+    #Left.append(pygame.image.load(Suffix+"Left3.PNG"))
+    #Left.append(pygame.image.load(Suffix+"Left4.PNG"))
+    #Left.append(pygame.image.load(Suffix+"Left5.PNG"))
+    #Left.append(pygame.image.load(Suffix+"Left6.PNG"))
+    Up=AddTransparency(Up)
+    Down=AddTransparency(Down)
+    Right=AddTransparency(Right)
+    Left=AddTransparency(Left)
+    if (atk):
+        atkLeft=pygame.image.load(Suffix+"AtkLeft.PNG")
+        atkRight=pygame.image.load(Suffix+"AtkRight.PNG")
+        atkDown=pygame.image.load(Suffix+"AtkDown.PNG")
+        atkUp=pygame.image.load(Suffix+"AtkUp.PNG")
+        atkLeft=AddTransparency(atkLeft)
+        atkRight=AddTransparency(atkRight)
+        atkDown=AddTransparency(atkDown)
+        atkUp=AddTransparency(atkUp)
+        imgs={"UP":Up,"DOWN":Down,"RIGHT":Right,"LEFT":Left,"ATK_LEFT":atkLeft,"ATK_RIGHT":atkRight,"ATK_UP":atkUp,"ATK_DOWN":atkDown}
+    else:
+        imgs={"UP":Up,"DOWN":Down,"RIGHT":Right,"LEFT":Left}
+
+    return imgs
+
 
 def LoadBackgroundImage(zoneParam="testArea"):
     backgroundSuffix="zones/"+zoneParam+"/Background/"
